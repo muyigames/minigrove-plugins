@@ -9,6 +9,7 @@ Add this public repository as a plugin marketplace:
 ```sh
 codex plugin marketplace add muyigames/minigrove-plugins
 codex plugin add minigrove@minigrove-plugins
+codex mcp login minigrove
 ```
 
 Open the Plugins Directory, choose the MiniGrove source and install MiniGrove. Complete browser sign-in, select projects and authorize the actions you want. Start a new chat after installation. Creating tasks has its own permission; existing grants need authorization again before that tool appears.
