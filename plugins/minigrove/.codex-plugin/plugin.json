@@ -1,0 +1,58 @@
+{
+  "name": "minigrove",
+  "version": "0.2.1",
+  "description": "Read MiniGrove projects and direct their existing computers from your conversation.",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "author": {
+    "name": "Muyi Games, Inc.",
+    "email": "support@muyigames.com",
+    "url": "https://app.minigrove.io"
+  },
+  "homepage": "https://app.minigrove.io",
+  "repository": "https://github.com/muyigames/minigrove-plugins",
+  "keywords": [
+    "minigrove",
+    "tasks",
+    "game-development"
+  ],
+  "interface": {
+    "displayName": "MiniGrove",
+    "shortDescription": "Manage your MiniGrove projects",
+    "longDescription": "Read your authorized MiniGrove projects and tasks, create and start a new task on an existing computer, continue existing work, inspect results and previews, or request a remote stop. Requires a MiniGrove account, project membership and explicit consent for each action. Your project computer executes the work. New task creation requires a supported computer and its separate permission. Accepted work continues after the client closes. Use MiniGrove workspace links for permission answers, merging and formal publication.",
+    "developerName": "Muyi Games, Inc.",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read projects and tasks",
+      "Create and start tasks",
+      "Continue tasks",
+      "Read results and previews",
+      "Request remote stop"
+    ],
+    "websiteURL": "https://app.minigrove.io",
+    "supportURL": "https://app.minigrove.io/get-started",
+    "privacyPolicyURL": "https://app.minigrove.io/privacy",
+    "termsOfServiceURL": "https://app.minigrove.io/terms",
+    "defaultPrompt": [
+      "List my authorized MiniGrove projects and summarize active tasks.",
+      "Create a read-only workspace check task on my chosen project computer."
+    ],
+    "composerIcon": "./assets/icon.svg",
+    "composerIconDark": "./assets/icon-dark.svg",
+    "logo": "./assets/icon.svg",
+    "logoDark": "./assets/icon-dark.svg"
+  },
+  "extensions": {
+    "com.openai": {
+      "publication": {
+        "release_notes": "Create and start tasks through a separate permission, then follow preparation, execution and exact results in the native conversation.",
+        "translations": {
+          "zh-CN": {
+            "subtitle": "在对话中管理 MiniGrove 项目",
+            "description": "查看已授权的项目和任务，在已有电脑上创建并启动任务，继续工作、查看执行结果和预览，或请求停止。需要 MiniGrove 账号、项目成员资格及单独授权。已有电脑负责执行；关闭客户端不会取消已接受的任务。需要本人处理权限、合并或正式发布时，打开返回的 MiniGrove 页面。"
+          }
+        }
+      }
+    }
+  }
+}
