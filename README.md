@@ -37,4 +37,4 @@ This repository is a public installation source. Universal directory review and 
 
 Version 0.2.1 adds public listing metadata and the existing MiniGrove brand marks to the 0.2.0 workflow. It contains no server implementation or credentials.
 
-Version 0.2.2 prepares reproducible directory review cases. [Review evidence and remaining gates](review/README.md) distinguish passing protocol and native Codex CLI checks from the pending final walkthrough. This version has not been submitted to or approved by the official directory.
+Version 0.2.2 prepares reproducible directory review cases. [Review evidence and remaining gates](review/README.md) distinguish passing protocol and native Codex CLI checks, the [edited CLI evidence walkthrough](review/WALKTHROUGH.md), and the separate browser authorization and official scan gates. This version has not been submitted to or approved by the official directory.
