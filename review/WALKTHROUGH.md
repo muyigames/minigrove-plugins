@@ -1,5 +1,7 @@
 # Native Codex CLI evidence walkthrough
 
+Historical review evidence for the [published MiniGrove 0.2.2 release](README.md#published-release--source-closeout-on-2026-11-07).
+
 [Play the edited walkthrough](assets/minigrove-native-codex-walkthrough.mp4) · [Actual selected tool events and source hashes](assets/native-walkthrough-evidence.json)
 
 178 seconds, 1920×1080 H.264 MP4. Recorded native client: Codex CLI 0.156.1, gpt-6-luna, fresh company account sign-in; MCP authorization belongs to a separate ordinary review member with only the synthetic MiniGrove Review Demo project. No credentials, browser cookies, OAuth codes or authentication files are in these materials.
@@ -26,4 +28,4 @@ This is an edited replay of actual recorded CLI JSONL events, with original tool
 
 The result projection reports `landing: landed` for a clean, unchanged Task; it does not prove this test merged anything. A stop run's `done` status is terminal; its explicit result establishes interruption, not successful completion of the wait. The creation case's requested final JSON was malformed, so execution acceptance uses structured tool receipts. Earlier guided negative attempts and a stop attempt missing selected-Task context are excluded. An unavailable named project is not a second existing excluded fixture.
 
-The imported five positive and three negative review cases remain in the package manifest. Official browser authorization, tool scanning, publisher verification and final submission must be checked independently.
+The imported five positive and three negative review cases remain in the package manifest. Official browser authorization, tool scanning, publisher verification and submission were separate review gates; their history and the later approval and publication are recorded in the [review archive](README.md).
