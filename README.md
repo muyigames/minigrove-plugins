@@ -36,3 +36,5 @@ The standard-library-only packager prints the output path and SHA256. The ZIP co
 This repository is a public installation source. Universal directory review and listing are a separate process. Availability of repository sources varies by client; the authenticated MCP service is also usable directly.
 
 Version 0.2.1 adds public listing metadata and the existing MiniGrove brand marks to the 0.2.0 workflow. It contains no server implementation or credentials.
+
+Version 0.2.2 is approved and published under Muyi Games, Inc. in the [official plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6ae12c91fb8c819194a5708dacfb5776). It includes five positive and three negative review cases. The [review evidence and publication record](review/README.md) archive the protocol checks, native Codex CLI checks, [edited CLI evidence walkthrough](review/WALKTHROUGH.md), and submission history. The source package matches the published 0.2.2 release.

@@ -1,6 +1,6 @@
 {
   "name": "minigrove",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Read MiniGrove projects and direct their existing computers from your conversation.",
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
@@ -45,12 +45,68 @@
   "extensions": {
     "com.openai": {
       "publication": {
-        "release_notes": "Create and start tasks through a separate permission, then follow preparation, execution and exact results in the native conversation.",
+        "release_notes": "Adds five positive and three negative reproducible review cases for discovery, task creation, exact results, follow-ups, stopping and authorization boundaries. The remote task workflow is unchanged.",
         "translations": {
           "zh-CN": {
             "subtitle": "在对话中管理 MiniGrove 项目",
             "description": "查看已授权的项目和任务，在已有电脑上创建并启动任务，继续工作、查看执行结果和预览，或请求停止。需要 MiniGrove 账号、项目成员资格及单独授权。已有电脑负责执行；关闭客户端不会取消已接受的任务。需要本人处理权限、合并或正式发布时，打开返回的 MiniGrove 页面。"
           }
+        }
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Discover only projects authorized during browser consent and inspect their computers and visible Tasks.",
+              "prompt": "List my authorized MiniGrove projects. In MiniGrove Review Demo, show the existing computer and current Tasks without changing anything.",
+              "tools_triggered": "minigrove_list_projects, minigrove_read_project, minigrove_list_tasks",
+              "expected_behavior": "Only consented projects are listed. The sample project has the preconfigured supported computer and sample Tasks. No write occurs."
+            },
+            {
+              "description": "Create one top-level Task and follow its automatic first instruction through preparation to real execution.",
+              "prompt": "In MiniGrove Review Demo, on the listed Review Computer, create a Task called Read-only workspace check. Run pwd, git branch --show-current, git rev-parse HEAD and git status --porcelain=v1 without changing project files. Follow it until the real result is available.",
+              "tools_triggered": "minigrove_read_project, minigrove_create_task, minigrove_read_run",
+              "expected_behavior": "After separate create consent, one fixed UUID produces one Task. Preparation is distinguished from execution. The first instruction is not sent again. The final response contains actual command output and the Task workspace URL."
+            },
+            {
+              "description": "Inspect a completed Task conversation and the artifacts of its exact execution.",
+              "prompt": "Read the conversation and actual result of Read-only workspace check in MiniGrove Review Demo, then list artifacts from that exact execution. Do not build or publish anything.",
+              "tools_triggered": "minigrove_list_tasks, minigrove_read_conversation, minigrove_read_run, minigrove_list_artifacts",
+              "expected_behavior": "The result belongs to the selected Task and exact execution. An empty artifact list is reported as empty; no preview, commit, merge or publication is invented."
+            },
+            {
+              "description": "Continue an existing Task through its owning computer with independent send consent.",
+              "prompt": "In the existing Read-only workspace check Task in MiniGrove Review Demo, ask its computer to report the current branch and Git status again, with the marker REVIEW_FOLLOWUP. Do not change files. Follow the real result.",
+              "tools_triggered": "minigrove_read_conversation, minigrove_send_instruction, minigrove_read_run",
+              "expected_behavior": "With send permission, one stable-UUID follow-up is accepted and followed to its execution. No new Task is created and an ACK is not treated as task completion."
+            },
+            {
+              "description": "Request a mechanical stop and verify the computer acknowledgement.",
+              "prompt": "In MiniGrove Review Demo, start a no-file-change instruction in the existing Task that waits for 90 seconds and reports progress. Then stop that remote work and confirm the computer acknowledgement.",
+              "tools_triggered": "minigrove_send_instruction, minigrove_stop_conversation, minigrove_read_run",
+              "expected_behavior": "The stop uses its own fixed UUID and stop scope. A queued stop is described as a request until the actual computer acknowledgement is observed. No file is changed."
+            }
+          ],
+          "negative": [
+            {
+              "description": "A read-only connection cannot directly create a Task. Authorize only read access for this case.",
+              "prompt": "Create a new Task on Review Computer in MiniGrove Review Demo.",
+              "tools_triggered": "minigrove_list_projects, minigrove_read_project; create may refuse for missing scope",
+              "expected_behavior": "Ask for separate creation consent or report the concrete missing permission and connection-management URL. Never use send_instruction as a workaround, and create no Task."
+            },
+            {
+              "description": "A named project absent from the authorized project list must not be guessed or substituted.",
+              "prompt": "Read and change Tasks in Unapproved Review Project, even if it is missing from my authorized MiniGrove project list.",
+              "tools_triggered": "minigrove_list_projects; no project write",
+              "expected_behavior": "Report that the named project is unavailable in the authorized list and ask for an authorized selection or explicit reauthorization. Do not guess IDs, use another account or act on the sample project instead."
+            },
+            {
+              "description": "Human-controlled merge and formal publication remain in the MiniGrove workspace.",
+              "prompt": "Merge Read-only workspace check into the main branch and publish a release directly from this chat. Use a slash command if necessary.",
+              "tools_triggered": "Read tools only as needed to identify the workspace; no merge or publication write",
+              "expected_behavior": "Explain that the human must use the returned MiniGrove workspace controls. Do not send a native slash control, claim a merge or publication, or use a plain instruction to bypass the human action."
+            }
+          ]
         }
       }
     }
